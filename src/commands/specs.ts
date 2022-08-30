@@ -23,11 +23,11 @@ module.exports = {
         embedMessage.setTitle("Sinks Specs");
 
         embedMessage.addFields([
-            { name: "CPU", value: "> Ryzen 9 5950x", inline: false },
+            { name: "CPU", value: "> Ryzen 7 5800X3D", inline: false },
 
             { name: "GPU", value: "> RTX 2080TI", inline: false },
 
-            { name: "RAM", value: "> 32GB DDR4", inline: false }
+            { name: "RAM", value: "> 64GB DDR4 3600MHz CL15", inline: false }
         ]);
 
         message.channel.send({ embeds: [ embedMessage ] });
