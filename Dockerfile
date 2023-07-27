@@ -1,21 +1,36 @@
-FROM node:16
+# App Dependencies 
 
-ARG bot_token
+FROM node:18-alpine AS deps
 
-ENV BOT_TOKEN=$bot_token
+WORKDIR /app
 
-WORKDIR /usr/src/app
+COPY package.json package-lock.json ./
 
-COPY package*.json ./
+RUN npm ci
 
-RUN npm install && npm install typescript -g
+# Build App
 
-RUN npm fund
+FROM node:18-alpine AS builder
+
+WORKDIR /app
+
+COPY --from=deps /app/node_modules ./node_modules
 
 COPY . .
 
 RUN npm run build
 
-COPY . .
+# Production Image
 
-CMD [ "npm", "start" ]
+FROM node:18-alpine AS runner
+
+WORKDIR /app
+
+ENV NODE_ENV production
+
+COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/node_modules ./node_modules
+
+EXPOSE 3000
+
+CMD ["node", "dist/index.js"]
