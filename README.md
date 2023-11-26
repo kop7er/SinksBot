@@ -1,4 +1,5 @@
 # Sinks Bot
+
 Bot used in [Sink's Discord Server](https://discord.gg/tVaDpUG)
 
 Prefix: `!`
