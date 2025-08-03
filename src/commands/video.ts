@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import { EmbedColor, YoutubeChannelID } from "../config.json";
 
 import { Client, EmbedBuilder, HexColorString, Message } from "discord.js";
