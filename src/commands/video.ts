@@ -5,12 +5,6 @@ import { Client, EmbedBuilder, HexColorString, Message } from "discord.js";
 // @ts-ignore
 import { getChannelVideos } from "yt-channel-info";
 
-const payload = {
-    channelId: YoutubeChannelID,
-    sortBy: "newest",
-    channelIdType: 0
-}
-
 module.exports = {
 
     data: {
@@ -25,7 +19,11 @@ module.exports = {
 
     async execute(bot: Client, message: Message, args: string[]) {
 
-        getChannelVideos(payload).then((response: any) => {
+        getChannelVideos({
+            channelId: YoutubeChannelID,
+            sortBy: "newest",
+            channelIdType: 0
+        }).then((response: any) => {
 
             if (!response.alertMessage) {
 
